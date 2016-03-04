@@ -1,0 +1,53 @@
+<% if @post.errors.any? %>
+  <%= pluralize(@post.errors.count, 'error') %> prevented your form from success.
+  <ul class="mdl-list">
+    <% @post.errors.full_messages.each do |msg| %>
+      <li class="mdl-list__item"><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_for @post do |f| %>
+
+<div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @post.errors[:title].any? %>">
+  <%= f.text_field :title, class: "mdl-textfield__input" %>
+  <% if @post.errors[:title].any? %>
+    <span class="mdl-textfield__error">* <%= @post.errors[:title].join(", ") %> </span>
+  <% end %>
+
+  <%= f.label :title, class: "mdl-textfield__label" %>
+</div>
+
+<div class="<%= 'is-invalid' if @post.errors[:user_id].any? %>">
+
+  <%= f.collection_select(:user_id, User.all.order("name asc"), :id, :name, {prompt: "Select User"}, {class: "mdl-textfield__input"}) %>
+
+  <% if @post.errors[:user_id].any? %>
+    <span class="mdl-textfield__error">* <%= @post.errors[:user_id].join(", ") %> </span>
+  <% end %>
+
+</div>
+
+<div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @post.errors[:link_url].any? %>">
+  <%= f.text_field :link_url, class: "mdl-textfield__input" %>
+  <% if @post.errors[:link_url].any? %>
+    <span class="mdl-textfield__error">* <%= @post.errors[:link_url].join(", ") %> </span>
+  <% end %>
+
+  <%= f.label :link_url, class: "mdl-textfield__label" %>
+</div>
+
+<div class="">
+  <%= f.label :photo, class: "mdl-textfield__label" %>
+  <%= f.attachment_field :photo, class: "" %>
+  <% if @post.errors[:photo].any? %>
+    <span class="mdl-textfield__error">* <%= @post.errors[:photo].join(", ") %> </span>
+  <% end %>
+</div>
+
+<div>
+  <br>
+  <%= f.submit class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+</div>
+
+<% end %>

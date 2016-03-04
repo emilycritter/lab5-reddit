@@ -1,1 +1,10 @@
-
+ul.pagination {
+  display: flex;
+  li {
+    list-style: none;
+    padding: 6px;
+  }
+}
+nav {
+  justify-content: center;
+}

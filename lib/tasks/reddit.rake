@@ -5,12 +5,13 @@ task :scrape => :environment do
 
   require 'rubygems'
   require 'mechanize'
+  require 'pry'
 
   agent = Mechanize.new
 
   page = agent.get('https://www.reddit.com/')
 
-  page.search('.thing').take(25) do |reddit_post|
+  page.search('.thing').take(25).each do |reddit_post|
 
     next if reddit_post.search('a.title')[0].blank?
 
@@ -19,7 +20,6 @@ task :scrape => :environment do
     if the_url.to_s.start_with?('/r')
       the_url = "https://www.reddit.com#{the_url}"
     end
-
 
     post = Post.where(link_url: the_url).first_or_initialize
     post.title = reddit_post.search('.title .title').text.strip
