@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
   has_many :comments
+  belongs_to :user
 
   validates :title, :vote_count, :added_by, presence: true
 
@@ -19,6 +20,14 @@ class Post < ActiveRecord::Base
         post.title = reddit_post.search('.title .title').text.strip
         post.vote_count = reddit_post.search('.unvoted .unvoted').text.strip
         post.added_by = reddit_post.search('.tagline .author').text.strip
+        if User.find_by(name: post.added_by)
+          post.user = user
+        else
+          new_user = User.new
+          new_user.name = reddit_post.search('.tagline .author').text.strip
+          new_user.save
+          post.user = new_user
+        end
         post.link_url = reddit_post.search('.title .title').to_s
         post.link_url = post.link_url.split('" tabindex=')[0].to_s
         post.link_url = post.link_url.split(' href="')[1].to_s
@@ -41,6 +50,7 @@ class Post < ActiveRecord::Base
       Post.order("id desc").where(link_url: post.link_url).all.drop(1).each { |r| r.delete }
     end
     puts Post.count
+    puts User.count
   end
 
 
