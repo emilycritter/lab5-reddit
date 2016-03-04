@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   has_many :comments
   belongs_to :user
 
-  validates :title, :vote_count, :added_by, presence: true
+  validates :title, :vote_count, presence: true
 
   def scrape_posts
     require 'rubygems'
