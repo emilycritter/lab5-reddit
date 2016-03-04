@@ -17,7 +17,7 @@
     <div class="demo-layout mdl-layout mdl-layout--fixed-header mdl-js-layout mdl-color--grey-100 is-upgraded">
       <header class="demo-header mdl-layout__header mdl-layout__header--scroll mdl-color--grey-100 mdl-color-text--grey-800">
         <div class="mdl-layout__header-row">
-            <%= link_to image_tag('reddit-home.png', style:"max-height: 64px;"), root_path, class: "mdl-layout-title" %>
+            <%= link_to image_tag('reddit-home.png', style:"max-height: 56px;"), root_path, class: "mdl-layout-title" %>
           <div class="mdl-layout-spacer"></div>
           <div data-upgraded=",MaterialTextfield" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded">
             <label data-upgraded=",MaterialButton" class="mdl-button mdl-js-button mdl-button--icon" for="search">
@@ -30,7 +30,7 @@
           </div>
         </div>
       </header>
-      <main class="demo-main mdl-layout__content">
+      <main class="mdl-layout__tab-panel is-active" id="overview">
         <%= yield %>
       </main>
 

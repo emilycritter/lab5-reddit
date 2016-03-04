@@ -1,2 +1,38 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<%= @posts.order("vote_count desc").each_with_index do |post, i| %>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col">
+      <%= i + 1 %>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col">
+      <div class="votes">
+        <!-- up arrow -->
+        <div class="vote_content">
+          <%= link_to up_vote_path(id: post.id), class: "mdl-layout-title" do %>
+            <i class="material-icons">arrow_upward</i>
+          <% end %>
+        </div>
+        <div class="vote_content">
+          <%= post.vote_count %>
+        </div>
+        <div class="vote_content">
+          <%= link_to down_vote_path(id: post.id), class: "mdl-layout-title" do %>
+            <i class="material-icons">arrow_downward</i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--10-col">
+      <h5><%= link_to post.title, post.link_url %></h5>
+      <p>
+        <small>
+        submitted <%= distance_of_time_in_words post.created_at, Time.now %> ago
+        by <%= post.added_by %>
+        </small>
+      </p>
+      <p>
+        <%= link_to "#{pluralize post.comments.count, 'comment'}", post_path(id: post.id) %>
+      </p>
+    </div>
+  </div>
+  <hr>
+<% end %>

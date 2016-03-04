@@ -20,7 +20,7 @@ class PostsController < ApplicationController
     @post.added_by = params[:post][:added_by]
 
     if @post.save
-      redirect_to root
+      redirect_to root_path
     else
       render :new
     end
@@ -48,7 +48,7 @@ class PostsController < ApplicationController
   def delete
     @post = Post.find_by id: params[:id]
     @post.destroy
-    redirect_to root
+    redirect_to root_path
   end
 
   def create_comment
@@ -68,12 +68,16 @@ class PostsController < ApplicationController
   def up_vote_count
     @post = Post.find_by id: params[:id]
     @post.vote_count += 1
-    redirect_to root
+    @post.save
+    redirect_to root_path
+    # render :index
   end
 
   def down_vote_count
     @post = Post.find_by id: params[:id]
     @post.vote_count -= 1
-    redirect_to root
+    @post.save
+    redirect_to root_path
+    # render :index
   end
 end
