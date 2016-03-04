@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all.order("vote_count desc")
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(25)
   end
 
   def new
@@ -17,8 +18,8 @@ class PostsController < ApplicationController
   def create
     @post = Post.new
     @post.title = params[:post][:title]
-    @post.vote_count = params[:post][:vote_count]
-    @post.photo_id = params[:post][:photo_id]
+    @post.vote_count = 0
+    @post.photo = params[:post][:photo]
     @post.link_url = params[:post][:link_url]
     @post.added_by = params[:post][:added_by]
 
@@ -37,7 +38,7 @@ class PostsController < ApplicationController
     @post = Post.find_by id: params[:id]
     @post.title = params[:post][:title]
     @post.vote_count = params[:post][:vote_count]
-    @post.photo_id = params[:post][:photo_id]
+    @post.photo = params[:post][:photo]
     @post.link_url = params[:post][:link_url]
     @post.added_by = params[:post][:added_by]
 

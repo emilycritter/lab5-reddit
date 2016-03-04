@@ -36,6 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+
+  gem 'pry'
 end
 
 group :development do
@@ -56,3 +58,5 @@ gem "refile", require: "refile/rails"
 gem "refile-mini_magick"
 gem 'refile-postgres'
 gem "rails-erd"
+gem 'kaminari', '~> 0.16.3'
+gem 'kaminari-bootstrap'

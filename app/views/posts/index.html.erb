@@ -1,4 +1,4 @@
-<% @posts.order("vote_count desc").each_with_index do |post, i| %>
+<% @posts.each_with_index do |post, i| %>
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col">
       <%= i + 1 %>
@@ -36,3 +36,5 @@
   </div>
   <hr>
 <% end %>
+
+<nav><%= paginate @posts %></nav>

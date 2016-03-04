@@ -33,9 +33,10 @@
   </div>
 </div>
 <hr>
+<h2>Comments</h2>
+<br>
 <div class="mdl-grid">
-  <h2>Comments</h2>
-    <div class="mdl-cell mdl-cell--10-col">
+    <div class="mdl-cell mdl-cell--10-col" style="padding: 10px; border: 1px solid #CCCCCC;">
     <%= form_for @comment do |f| %>
     <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:author].any? %>">
       <%= f.text_field :author, class: "mdl-textfield__input" %>
@@ -46,7 +47,7 @@
       <%= f.label :author, class: "mdl-textfield__label" %>
     </div>
     <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:comment_text].any? %>">
-      <%= f.text_area :comment_text, class: "mdl-textfield__input" %>
+      <%= f.text_field :comment_text, class: "mdl-textfield__input" %>
       <% if @comment.errors[:comment_text].any? %>
         <span class="mdl-textfield__error">*
           <%= @comment.errors[:comment_text].join(", ") %>
@@ -60,7 +61,8 @@
       <%= f.submit class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
     </div>
     <% end %>
-
+  </div>
+  <div class="mdl-cell mdl-cell--10-col">
     <ul>
       <% @post.comments.order("id desc").each do |comment| %>
       <li>
