@@ -1,6 +1,8 @@
 class Post < ActiveRecord::Base
   has_many :comments
 
+  validates :title, :vote_count, :added_by, presence: true
+
   def scrape_posts
     require 'rubygems'
     require 'mechanize'
