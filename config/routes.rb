@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   patch 'posts/:id' => 'posts#update'
   delete 'posts/:id' => 'posts#delete'
   post 'posts/:id/comments' => 'posts#create_comment', as: :comments
-  post 'posts/:id/votes' => 'posts#update_votes', as: :votes
+  patch 'posts/:id' => 'posts#up_vote_count'
+  patch 'posts/:id' => 'posts#down_vote_count'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
