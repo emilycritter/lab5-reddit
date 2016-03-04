@@ -66,18 +66,18 @@ class PostsController < ApplicationController
   end
 
   def up_vote_count
+    @posts = Post.all
     @post = Post.find_by id: params[:id]
     @post.vote_count += 1
     @post.save
     redirect_to root_path
-    # render :index
   end
 
   def down_vote_count
+    @posts = Post.all
     @post = Post.find_by id: params[:id]
     @post.vote_count -= 1
     @post.save
     redirect_to root_path
-    # render :index
   end
 end

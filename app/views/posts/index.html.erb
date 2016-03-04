@@ -1,4 +1,4 @@
-<%= @posts.order("vote_count desc").each_with_index do |post, i| %>
+<% @posts.order("vote_count desc").each_with_index do |post, i| %>
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col">
       <%= i + 1 %>
@@ -15,7 +15,7 @@
           <%= post.vote_count %>
         </div>
         <div class="vote_content">
-          <%= link_to down_vote_path(id: post.id), class: "mdl-layout-title" do %>
+          <%= link_to down_vote_path(id: post.id), method: :patch, class: "mdl-layout-title" do %>
             <i class="material-icons">arrow_downward</i>
           <% end %>
         </div>
