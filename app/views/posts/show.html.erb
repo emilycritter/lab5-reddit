@@ -2,7 +2,6 @@
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col">
       <div class="votes">
-        <!-- up arrow -->
         <div class="vote_content">
           <%= link_to up_vote_path(id: @post.id), class: "mdl-layout-title" do %>
             <i class="material-icons">arrow_upward</i>
@@ -20,10 +19,12 @@
     </div>
     <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--3-col-phone">
       <h5>
-        <%= link_to @post.title, @post.link_url %>
         <%= link_to edit_post_path(id: @post.id) do %>
           <i class="material-icons">edit</i>
         <% end %>
+        <%= link_to @post.title, @post.link_url %>
+        &nbsp;
+        <small><%= link_to "Delete", post_path(id: @post.id), method: :delete, data: {confirm: "Are you sure you want to delete?"} %></small>
       </h5>
       <p>
         <small>
