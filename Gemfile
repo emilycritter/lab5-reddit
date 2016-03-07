@@ -60,3 +60,4 @@ gem 'refile-postgres'
 gem "rails-erd"
 gem 'kaminari', '~> 0.16.3'
 gem 'kaminari-bootstrap'
+gem 'devise'

@@ -20,7 +20,7 @@
 
 <div class="<%= 'is-invalid' if @post.errors[:user_id].any? %>">
 
-  <%= f.collection_select(:user_id, User.all.order("name asc"), :id, :name, {prompt: "Select User"}, {class: "mdl-textfield__input"}) %>
+  <%= f.collection_select(:user_id, User.all.order("email asc"), :id, :email, {prompt: "Select User"}, {class: "mdl-textfield__input"}) %>
 
   <% if @post.errors[:user_id].any? %>
     <span class="mdl-textfield__error">* <%= @post.errors[:user_id].join(", ") %> </span>

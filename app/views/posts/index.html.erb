@@ -34,7 +34,7 @@
       <p>
         <small>
         submitted <%= distance_of_time_in_words post.created_at, Time.now %> ago
-        by <%= post.user.name %>
+        by <%= post.user.email.split('@')[0].to_s %>
         </small>
       </p>
       <p>
