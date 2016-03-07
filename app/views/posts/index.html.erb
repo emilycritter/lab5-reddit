@@ -34,7 +34,7 @@
       <p>
         <small>
         submitted <%= distance_of_time_in_words post.created_at, Time.now %> ago
-        by <%= post.added_by %>
+        by <%= post.user.name %>
         </small>
       </p>
       <p>

@@ -26,7 +26,7 @@ class PostsController < ApplicationController
     @post.vote_count = 0
     @post.photo = params[:post][:photo]
     @post.link_url = params[:post][:link_url]
-    @post.added_by = params[:post][:added_by]
+    @post.user_id = params[:post][:user_id]
 
     if @post.save
       redirect_to root_path
@@ -45,7 +45,7 @@ class PostsController < ApplicationController
     @post.vote_count = params[:post][:vote_count]
     @post.photo = params[:post][:photo]
     @post.link_url = params[:post][:link_url]
-    @post.added_by = params[:post][:added_by]
+    @post.user_id = params[:post][:user_id]
 
     if @post.save
       redirect_to post_path(id: @post.id)
