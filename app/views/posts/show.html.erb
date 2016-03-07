@@ -1,78 +1,89 @@
-<div class="mdl-grid">
-  <div class="mdl-cell mdl-cell--1-col">
-    <div class="votes">
-      <!-- up arrow -->
-      <div class="vote_content">
-        <%= link_to up_vote_path(id: @post.id), class: "mdl-layout-title" do %>
-          <i class="material-icons">arrow_upward</i>
+<div class="show-page">
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--1-col">
+      <div class="votes">
+        <!-- up arrow -->
+        <div class="vote_content">
+          <%= link_to up_vote_path(id: @post.id), class: "mdl-layout-title" do %>
+            <i class="material-icons">arrow_upward</i>
+          <% end %>
+        </div>
+        <div class="vote_content">
+          <%= @post.vote_count %>
+        </div>
+        <div class="vote_content">
+          <%= link_to down_vote_path(id: @post.id), method: :patch, class: "mdl-layout-title" do %>
+            <i class="material-icons">arrow_downward</i>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+      <h5>
+        <%= link_to @post.title, @post.link_url %>
+        <%= link_to edit_post_path(id: @post.id) do %>
+          <i class="material-icons">edit</i>
         <% end %>
-      </div>
-      <div class="vote_content">
-        <%= @post.vote_count %>
-      </div>
-      <div class="vote_content">
-        <%= link_to down_vote_path(id: @post.id), method: :patch, class: "mdl-layout-title" do %>
-          <i class="material-icons">arrow_downward</i>
-        <% end %>
-      </div>
-    </div>
-  </div>
-  <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-    <h5><%= link_to @post.title, @post.link_url %></h5>
-    <p>
-      <small>
-        submitted
-        <%= distance_of_time_in_words @post.created_at, Time.now %>
-        ago by
-        <%= @post.added_by %>
-      </small>
-    </p>
-    <p>
-      <%= pluralize @post.comments.count, 'comment' %>
-    </p>
-  </div>
-</div>
-<hr>
-<h2>Comments</h2>
-<br>
-<div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--10-col" style="padding: 10px; border: 1px solid #CCCCCC;">
-    <%= form_for @comment do |f| %>
-    <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:author].any? %>">
-      <%= f.text_field :author, class: "mdl-textfield__input" %>
-      <% if @comment.errors[:author].any? %>
-        <span class="mdl-textfield__error">* <%= @comment.errors[:author].join(", ") %> </span>
-      <% end %>
-
-      <%= f.label :author, class: "mdl-textfield__label" %>
-    </div>
-    <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:comment_text].any? %>">
-      <%= f.text_field :comment_text, class: "mdl-textfield__input" %>
-      <% if @comment.errors[:comment_text].any? %>
-        <span class="mdl-textfield__error">*
-          <%= @comment.errors[:comment_text].join(", ") %>
-        </span>
-      <% end %>
-
-      <%= f.label :comment_text, class: "mdl-textfield__label" %>
-    </div>
-
-    <div>
-      <%= f.submit class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
-    </div>
-    <% end %>
-  </div>
-  <div class="mdl-cell mdl-cell--10-col">
-    <ul>
-      <% @post.comments.order("id desc").each do |comment| %>
-      <li>
-        <%= comment.comment_text %>
-        <br>
+      </h5>
+      <p>
         <small>
-          posted <%= distance_of_time_in_words comment.created_at, Time.now %> ago by <%= comment.author %>
+          submitted
+          <%= distance_of_time_in_words @post.created_at, Time.now %>
+          ago by
+          <%= @post.added_by %>
         </small>
-      </li>
-      <% end %>
-    </ul>
+      </p>
+      <p>
+        <%= pluralize @post.comments.count, 'comment' %>
+      </p>
+    </div>
+  </div>
+  <hr>
+  <div class="mdl-grid">
+    <div class="mdl-cell mdl-cell--12-col">
+      <h2>Comments</h2>
+      <br>
+      <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--10-col" style="padding: 10px; border: 1px solid #CCCCCC;">
+          <%= form_for @comment do |f| %>
+          <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:author].any? %>">
+            <%= f.text_field :author, class: "mdl-textfield__input" %>
+            <% if @comment.errors[:author].any? %>
+              <span class="mdl-textfield__error">* <%= @comment.errors[:author].join(", ") %> </span>
+            <% end %>
+
+            <%= f.label :author, class: "mdl-textfield__label" %>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield <%= 'is-invalid' if @comment.errors[:comment_text].any? %>">
+            <%= f.text_field :comment_text, class: "mdl-textfield__input" %>
+            <% if @comment.errors[:comment_text].any? %>
+              <span class="mdl-textfield__error">*
+                <%= @comment.errors[:comment_text].join(", ") %>
+              </span>
+            <% end %>
+
+            <%= f.label :comment_text, class: "mdl-textfield__label" %>
+          </div>
+
+          <div>
+            <%= f.submit class: "mdl-button mdl-js-button mdl-button--raised mdl-button--colored" %>
+          </div>
+          <% end %>
+        </div>
+        <div class="mdl-cell mdl-cell--10-col">
+          <ul>
+            <% @post.comments.order("id desc").each do |comment| %>
+            <li>
+              <%= comment.comment_text %>
+              <br>
+              <small>
+                posted <%= distance_of_time_in_words comment.created_at, Time.now %> ago by <%= comment.author %>
+              </small>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
