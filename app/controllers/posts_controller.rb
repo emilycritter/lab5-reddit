@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if params[:search_text].present?
       @posts = Post.where("title ILIKE '%#{params[:search_text]}%'").order("vote_count desc")

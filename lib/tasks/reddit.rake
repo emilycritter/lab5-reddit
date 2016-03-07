@@ -27,6 +27,8 @@ task :scrape => :environment do
 
     post.user = User.where(name: post.added_by).first_or_initialize
     post.user.name = reddit_post.search('.tagline .author').text.strip
+    post.user.email = "#{post.user.name}@example.com"
+    post.user.password = "#{post.user.name}@example.com"
     post.user.save
 
     if reddit_post.search('.thumbnail img').any?
