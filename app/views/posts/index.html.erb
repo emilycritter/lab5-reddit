@@ -1,11 +1,14 @@
 <% @posts.each_with_index do |post, i| %>
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--1-col">
-      <%= i + 1 %>
+      <% if @page > 1 %>
+        <%= ((@page -1) * 25) + i + 1 %>
+      <% else %>
+        <%= ((@page) * 25) + i + 1 %>
+      <% end %>
     </div>
     <div class="mdl-cell mdl-cell--1-col">
       <div class="votes">
-        <!-- up arrow -->
         <div class="vote_content">
           <%= link_to up_vote_path(id: post.id), class: "mdl-layout-title" do %>
             <i class="material-icons">arrow_upward</i>
