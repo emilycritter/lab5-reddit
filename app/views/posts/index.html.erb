@@ -25,7 +25,12 @@
       </div>
     </div>
     <div class="mdl-cell mdl-cell--10-col mdl-cell--6-col-tablet mdl-cell--2-col-phone">
-      <h5><%= link_to post.title, post.link_url %></h5>
+      <h5>
+        <%= link_to post.link_url do %>
+          <i class="material-icons">link</i>
+        <% end %>
+        <%= link_to post.title, post_path(id: post.id) %>
+      </h5>
       <p>
         <small>
         submitted <%= distance_of_time_in_words post.created_at, Time.now %> ago

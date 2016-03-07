@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
 
   attachment :photo
-  validates :title, :vote_count, presence: true
+  validates :title, :vote_count, :user_id, presence: true
 
 
 end
