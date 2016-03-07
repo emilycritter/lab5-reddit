@@ -1,3 +1,5 @@
+![Alt text](erd.pdf?raw=true)
+
 # Rails CRUD
 ## Week 5 Lab - Microblogging Social Network (Reddit)
 ###### Due Monday, March 07, 2016  
