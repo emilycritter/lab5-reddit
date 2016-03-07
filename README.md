@@ -1,4 +1,4 @@
-![Alt text](erd.pdf?raw=true)
+![img](erd.png)
 
 # Rails CRUD
 ## Week 5 Lab - Microblogging Social Network (Reddit)
