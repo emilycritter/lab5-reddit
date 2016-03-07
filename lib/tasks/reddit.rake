@@ -5,7 +5,6 @@ task :scrape => :environment do
 
   require 'rubygems'
   require 'mechanize'
-  require 'pry'
 
   agent = Mechanize.new
 
