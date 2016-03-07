@@ -1,18 +1,20 @@
 <div class="demo-container mdl-grid">
-  <h2>Resend confirmation instructions</h2>
+  <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col", style="margin: 0 auto;">
+    <h2>Resend confirmation instructions</h2>
 
-  <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-    <%= devise_error_messages! %>
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= devise_error_messages! %>
 
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-    </div>
+      <div class="field">
+        <%= f.label :email %><br />
+        <%= f.email_field :email, autofocus: true, value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+      </div>
 
-    <div class="actions">
-      <%= f.submit "Resend confirmation instructions" %>
-    </div>
-  <% end %>
+      <div class="actions">
+        <%= f.submit "Resend confirmation instructions" %>
+      </div>
+    <% end %>
 
-  <%= render "devise/shared/links" %>
+    <%= render "devise/shared/links" %>
+  </div>
 </div>

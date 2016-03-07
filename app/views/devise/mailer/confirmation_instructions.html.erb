@@ -1,7 +1,9 @@
 <div class="demo-container mdl-grid">
-  <p>Welcome <%= @email %>!</p>
+  <div class="demo-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--8-col", style="margin: 0 auto;">
+    <p>Welcome <%= @email %>!</p>
 
-  <p>You can confirm your account email through the link below:</p>
+    <p>You can confirm your account email through the link below:</p>
 
-  <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+    <p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+  </div>
 </div>
