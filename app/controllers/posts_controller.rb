@@ -1,7 +1,12 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order("vote_count desc")
+    if params[:search_text].present?
+      @posts = Post.where("title ILIKE '%#{params[:search_text]}%'").order("vote_count desc")
+    else
+      @posts = Post.all.order("vote_count desc")
+    end
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(25)
+    @page =  params[:page].to_i
   end
 
   def new

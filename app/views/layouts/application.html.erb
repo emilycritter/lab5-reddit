@@ -19,15 +19,17 @@
         <div class="mdl-layout__header-row">
             <%= link_to image_tag('reddit-home.png', style:"max-height: 56px;"), root_path, class: "mdl-layout-title" %>
           <div class="mdl-layout-spacer"></div>
-          <div data-upgraded=",MaterialTextfield" class="mdl-textfield mdl-js-textfield mdl-textfield--expandable is-upgraded">
-            <label data-upgraded=",MaterialButton" class="mdl-button mdl-js-button mdl-button--icon" for="search">
-              <i class="material-icons">search</i>
-            </label>
-            <div class="mdl-textfield__expandable-holder">
-              <input class="mdl-textfield__input" id="search" type="text">
-              <label class="mdl-textfield__label" for="search">Enter your query...</label>
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable">
+              <label class="mdl-button mdl-js-button mdl-button--icon" for="sample6">
+                <i class="material-icons">search</i>
+              </label>
+              <div class="mdl-textfield__expandable-holder">
+                <input class="mdl-textfield__input" type="text" id="sample6" name="search_text">
+                <label class="mdl-textfield__label" for="sample-expandable">Expandable Input</label>
+              </div>
             </div>
-          </div>
+          </form>
           <%= link_to new_post_path, class: "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" do %>
             <i class="material-icons">add</i>
           <% end %>
