@@ -3,7 +3,10 @@ class PostsController < ApplicationController
 
   def index
     if params[:search_text].present?
-      @posts = Post.where("title ILIKE '%#{params[:search_text]}%'").order("vote_count desc")
+      @posts = Post
+        .joins(:user)
+        .where("title ILIKE ? OR users.email ILIKE ?", "%#{params[:search_text]}%", "%#{params[:search_text]}%")
+        .order("vote_count desc")
     else
       @posts = Post.all.order("vote_count desc")
     end

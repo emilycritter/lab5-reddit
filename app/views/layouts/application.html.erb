@@ -31,11 +31,11 @@
               </div>
             </div>
           </form>
+          <%= link_to edit_user_registration_path, class: "mdl-button mdl-js-button mdl-button--icon" do %>
+            <i class="material-icons">account_circle</i>
+          <% end %>
           <%= link_to new_post_path, class: "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" do %>
             <i class="material-icons">add</i>
-          <% end %>
-          <%= link_to edit_user_registration_path, class: "mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" do %>
-            <i class="material-icons">account_circle</i>
           <% end %>
         </div>
       </header>
